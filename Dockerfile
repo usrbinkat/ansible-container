@@ -13,7 +13,13 @@ RUN set -ex \
      && pip3 install ansible \
      && pip3 install openshift \
      && dnf clean all \
-    && echo
+     && echo
+
+RUN curl https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz -o openshift-client-linux.tar.gz \
+     && tar -xvz openshift-client-linux.tar.gz \
+     && rm openshift-client-linux.tar.gz \
+     && rm kubectl \
+     && mv oc /usr/local/bin
 
 VOLUME /ansible
 
