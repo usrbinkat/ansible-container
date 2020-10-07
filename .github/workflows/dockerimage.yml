@@ -45,6 +45,10 @@ jobs:
                  --tag quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:${{ env.varrundate }}-${{ env.githash }}
     - name: Image Push | ansible | quay.io
       run: |
-#        docker push quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible; \
-        docker push quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:latest; \
+        docker push quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible
+    - name: Image Push | ansible | quay.io
+      run: |
+        docker push quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:latest
+    - name: Image Push | ansible | quay.io
+      run: |
         docker push quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:${{ env.varveropenshift }}-${{ env.varrundate }}-${{ env.githash }}
