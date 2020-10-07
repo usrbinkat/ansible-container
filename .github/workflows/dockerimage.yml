@@ -1,0 +1,45 @@
+name: Ansible Container Build
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+  schedule:
+    - cron: '0 1 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Variable | Export Build Date
+      run: |
+        export varrundate="$(date +%y%m%d%I%M%S)"
+        echo "::set-env name=varrundate::$varrundate"
+    - name: Variable | Git Commit Hash
+      run: |
+        export githash="$(git log -1 --pretty=%h)"
+        echo "::set-env name=githash::$githash"
+    - name: Variable | Git Remote
+      run: |
+        export gitremote="$(git config --get remote.origin.url)"
+        echo "::set-env name=gitremote::$gitremote"
+    - name: Quay.io Login
+      run: |
+        echo "${{ secrets.DOCKERHUB_PASSWD }}" | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin quay.io
+    - name: Build Image
+      run: |
+        docker build . \
+                 --force-rm \
+                 --file ./Dockerfile \
+                 --build-arg varRunDate=${{ env.varrundate }} \
+                 --build-arg varUrlGit=${{ env.gitremote }} \
+                 --tag quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible; \
+                 --tag quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:latest; \
+                 --tag quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:${{ env.varrundate }}-${{ env.githash }};
+    - name: Image Push | ansible | quay.io
+      run: |
+        docker push quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible; \
+        docker push quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:latest; \
+        docker push quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:${{ env.varveropenshift }}-${{ env.varrundate }}-${{ env.githash }};
