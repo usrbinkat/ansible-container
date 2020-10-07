@@ -14,5 +14,6 @@ RUN set -ex \
      && dnf clean all \
     && echo
 
+VOLUME /ansible
 
-CMD ["sleep"]
+CMD ["./run.sh"]
