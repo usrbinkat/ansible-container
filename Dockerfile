@@ -16,9 +16,10 @@ RUN set -ex \
      && echo
 
 RUN curl https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz -o openshift-client-linux.tar.gz \
-     && tar -xvz openshift-client-linux.tar.gz \
+     && tar -xvf openshift-client-linux.tar.gz \
      && rm openshift-client-linux.tar.gz \
      && rm kubectl \
+     && rm README.md \
      && mv oc /usr/local/bin
 
 VOLUME /ansible
