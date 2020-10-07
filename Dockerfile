@@ -11,6 +11,7 @@ RUN set -ex \
      && dnf -qy update \
      && dnf install -qy python3-pip \
      && pip3 install ansible \
+     && pip3 install openshift \
      && dnf clean all \
     && echo
 
