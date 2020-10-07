@@ -16,4 +16,4 @@ RUN set -ex \
 
 VOLUME /ansible
 
-CMD ["./run.sh"]
+CMD ["/ansible/run.sh"]
