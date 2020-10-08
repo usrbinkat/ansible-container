@@ -29,11 +29,6 @@ jobs:
         export githash="$(git log -1 --pretty=%h)"
         echo "::set-env name=githash::$githash"
         
- #   - name: Variable | Git Remote
- #     run: |
- #       export gitremote="$(git config --get remote.origin.url)"
- #       echo "./" | Out-File -FilePath $gitremote:GITHUB_PATH -Encoding utf8
- #       echo "::set-env name=gitremote::$gitremote"
     - name: Quay.io Login
       run: |
         echo '${{ secrets.DOCKERHUB_PASSWD }}' | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin quay.io
