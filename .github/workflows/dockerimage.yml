@@ -38,8 +38,6 @@ jobs:
         docker build . \
                  --force-rm \
                  --file ./Dockerfile \
-                 --build-arg varRunDate=${{ env.varrundate }} \
-                 --build-arg varUrlGit=${{ env.gitremote }} \
                  --tag quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible \
                  --tag quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:latest \
                  --tag quay.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/ansible:${{ env.varrundate }}-${{ env.githash }}
