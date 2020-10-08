@@ -10,7 +10,7 @@ COPY --from=rpm /etc/os-release     /etc/os-release
 COPY --from=rpm /etc/redhat-release /etc/redhat-release
 
 RUN set -ex \
-     && curl -L ${ocUrl} | xzvf - --directory /usr/local/bin oc \
+     && curl -L ${ocUrl} | tar xzvf - --directory /usr/local/bin oc \
      && chmod +x /usr/local/bin/oc \
     && echo
 
