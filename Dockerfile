@@ -9,6 +9,14 @@ COPY --from=rpm /etc/os-release     /etc/os-release
 COPY --from=rpm /etc/yum.repos.d    /etc/yum.repos.d
 COPY --from=rpm /etc/redhat-release /etc/redhat-release
 
+PIP_PKGS="\
+        ansible \
+        openshift \
+"
+
+RPM_PKGS="\
+        python3-pip \
+"
 RUN set -ex \
      && curl -L ${ocUrl} | tar xzvf - --directory /usr/local/bin oc \
      && chmod +x /usr/local/bin/oc \
@@ -16,11 +24,13 @@ RUN set -ex \
     && echo
 
 RUN set -ex \
-     && dnf -q -y update \
-     && dnf install -q -y python3-pip \
-     && pip3 install ansible \
-     && pip3 install openshift \
+     && dnf install -q -y ${RPM_PKGS} \
      && dnf clean all \
+     && rm -rf /var/cache/yum \
+    && echo
+
+RUN set -ex \
+     && pip3 install ${PIP_PKGS} \
     && echo
 
 VOLUME /ansible
