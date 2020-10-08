@@ -12,6 +12,7 @@ COPY --from=rpm /etc/redhat-release /etc/redhat-release
 RUN set -ex \
      && curl -L ${ocUrl} | tar xzvf - --directory /usr/local/bin oc \
      && chmod +x /usr/local/bin/oc \
+     && /usr/local/bin/oc version \
     && echo
 
 RUN set -ex \
