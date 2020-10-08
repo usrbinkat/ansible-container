@@ -4,9 +4,9 @@ FROM ubi
 
 ARG ocUrl="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz"
 
-COPY --from=rpm /etc/pki/           /etc/pki
-COPY --from=rpm /etc/yum.repos.d/   /etc/yum.repos.d
+COPY --from=rpm /etc/pki            /etc/pki
 COPY --from=rpm /etc/os-release     /etc/os-release
+COPY --from=rpm /etc/yum.repos.d    /etc/yum.repos.d
 COPY --from=rpm /etc/redhat-release /etc/redhat-release
 
 RUN set -ex \
