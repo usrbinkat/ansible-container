@@ -10,16 +10,16 @@ COPY --from=rpm /etc/os-release     /etc/os-release
 COPY --from=rpm /etc/redhat-release /etc/redhat-release
 
 RUN set -ex \
+     && curl -L ${ocUrl} | xzvf - --directory /usr/local/bin oc \
+     && chmod +x /usr/local/bin/oc \
+    && echo
+
+RUN set -ex \
      && dnf -qy update \
      && dnf install -qy python3-pip \
      && pip3 install ansible \
      && pip3 install openshift \
      && dnf clean all \
-    && echo
-
-RUN set -ex \
-     && curl -L ${ocUrl} | xzvf - --directory /usr/local/bin oc \
-     && chmod +x /usr/local/bin/oc \
     && echo
 
 VOLUME /ansible
