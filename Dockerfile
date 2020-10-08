@@ -9,12 +9,12 @@ COPY --from=rpm /etc/os-release     /etc/os-release
 COPY --from=rpm /etc/yum.repos.d    /etc/yum.repos.d
 COPY --from=rpm /etc/redhat-release /etc/redhat-release
 
-PIP_PKGS="\
+ARG PIP_PKGS="\
         ansible \
         openshift \
 "
 
-RPM_PKGS="\
+ARG RPM_PKGS="\
         python3-pip \
 "
 RUN set -ex \
