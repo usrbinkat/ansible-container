@@ -7,8 +7,7 @@ on:
         required: false
   push:
     branches: 
-#      - main
-      - joe-ghactions-envvar-test
+      - main
   pull_request:
     branches: 
       - main
@@ -19,19 +18,16 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-#    - uses: actions/core@latest
     - name: Variable | Export Build Date
       run: |
         export varrundate="$(date +%y%m%d%I%M%S)"
         echo "::set-env name=varrundate::$varrundate"
-#        echo "./" | Out-File -FilePath $varrundate:GITHUB_PATH -Encoding utf8
 
         
     - name: Variable | Git Commit Hash
       run: |
         export githash="$(git log -1 --pretty=%h)"
         echo "::set-env name=githash::$githash"
- #       echo "./" | Out-File -FilePath $githash:GITHUB_PATH -Encoding utf8
         
  #   - name: Variable | Git Remote
  #     run: |
