@@ -4,7 +4,7 @@ FROM docker.io/library/centos:latest as rpm
 FROM registry.access.redhat.com/ubi8/ubi:latest as ubi
 FROM ubi
 
-# Copy from the host filesystem to the container's filesystem
+# Copy YUM Repo data from the CentOS donor container to the container's filesystem
 
 COPY --from=rpm /etc/pki            /etc/pki
 COPY --from=rpm /etc/os-release     /etc/os-release
