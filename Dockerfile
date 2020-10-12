@@ -6,6 +6,7 @@ COPY --from=rpm /etc/pki/           /etc/pki
 COPY --from=rpm /etc/yum.repos.d/   /etc/yum.repos.d
 COPY --from=rpm /etc/os-release     /etc/os-release
 COPY --from=rpm /etc/redhat-release /etc/redhat-release
+COPY /bin/run.sh /tmp/run.sh
 
 RUN set -ex \
      && dnf -qy update \
@@ -22,8 +23,8 @@ RUN curl https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/opensh
      && rm README.md \
      && mv oc /usr/local/bin
 
-VOLUME /ansible
+RUN mkdir /ansible
 
 WORKDIR /ansible
 
-CMD ["./run.sh"]
+CMD ["/tmp/run.sh"]
