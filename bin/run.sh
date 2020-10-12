@@ -8,4 +8,5 @@ oc login --token=${OC_TOKEN} --server=${OC_API_URL} --insecure-skip-tls-verify
 git config --global http.sslVerify false
 git clone https://${GIT_USER}:${GIT_TOKEN}@${GIT_URL}
 cd ${PLAYBOOK_DIR}
+ansible-playbook setup.yml
 ansible-playbook site.yml
