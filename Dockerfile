@@ -41,7 +41,7 @@ RUN set -ex \
      && echo
 
 RUN mkdir /ansible
-COPY /bin/run.sh /ansible/run.sh
+COPY bin/run.sh /ansible/run.sh
 
 WORKDIR /ansible
 
