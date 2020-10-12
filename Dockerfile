@@ -20,6 +20,7 @@ ARG PIP_PKGS="\
 "
 ARG RPM_PKGS="\
         python3-pip \
+        git \
 "
 
 # Downloading oc client tool and installing packages in the container
