@@ -10,7 +10,6 @@ COPY --from=rpm /etc/pki            /etc/pki
 COPY --from=rpm /etc/os-release     /etc/os-release
 COPY --from=rpm /etc/yum.repos.d    /etc/yum.repos.d
 COPY --from=rpm /etc/redhat-release /etc/redhat-release
-COPY /bin/run.sh /tmp/run.sh
 
 # Set build-time variables to download required packages and the oc client tool
 
@@ -42,7 +41,8 @@ RUN set -ex \
      && echo
 
 RUN mkdir /ansible
+COPY /bin/run.sh /ansible/run.sh
 
 WORKDIR /ansible
 
-CMD ["/tmp/run.sh"]
+CMD ["run.sh"]
