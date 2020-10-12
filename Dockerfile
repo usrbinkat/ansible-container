@@ -45,4 +45,4 @@ COPY bin/run.sh /ansible/run.sh
 
 WORKDIR /ansible
 
-CMD ["run.sh"]
+CMD ["./run.sh"]

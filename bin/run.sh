@@ -1,4 +1,5 @@
 #! /bin/bash
+set -xe
 
 PLAYBOOK_DIR=$(echo ${GIT_URL} | awk -F '/' '{print $NF}' | awk -F '.' '{print $1}')
 GIT_URL=$(echo ${GIT_URL} | cut -f3- -d '/')
