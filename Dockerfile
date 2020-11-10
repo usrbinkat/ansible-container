@@ -59,7 +59,7 @@ RUN set -ex \
 
 # Update dnf packages & install auxiliary packages if declared
 RUN set -ex \
-     && dnf update \
+     && dnf update -y \
      && dnf install ${DNF_FLAGS} ${DNF_PKGS} \
      && dnf clean all \
      && rm -rf /var/cache/yum \
