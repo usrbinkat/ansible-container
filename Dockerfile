@@ -27,6 +27,7 @@ ARG PIP_PKGS="\
         kubernetes \
 "
 ARG DNF_PKGS="\
+        git \
 "
 
 # CMD Flags
@@ -59,7 +60,7 @@ RUN set -ex \
 # Update dnf packages & install auxiliary packages if declared
 RUN set -ex \
      && dnf update \
-     && [[ ! -z "${DNF_PKGS}" ]] || dnf install ${DNF_FLAGS} ${DNF_PKGS} \
+     && dnf install ${DNF_FLAGS} ${DNF_PKGS} \
      && dnf clean all \
      && rm -rf /var/cache/yum \
      && git version \
