@@ -47,9 +47,9 @@ jobs:
         platforms: linux/amd64
         push: true
         tags: |
-          docker.io/${{ secrets.GIT_PROJECT }}/${{ github.workflow }}
-          docker.io/${{ secrets.GIT_PROJECT }}/${{ github.workflow }}:ubi
-          docker.io/${{ secrets.GIT_PROJECT }}/${{ github.workflow }}:latest
-          docker.io/${{ secrets.GIT_PROJECT }}/${{ github.workflow }}:main-${{ env.varrundate }}-${{ github.sha }}
+          docker.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/${{ github.workflow }}
+          docker.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/${{ github.workflow }}:ubi
+          docker.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/${{ github.workflow }}:latest
+          docker.io/${{ secrets.DOCKERHUB_ORGANIZATION }}/${{ github.workflow }}:main-${{ env.varrundate }}-${{ github.sha }}
         build-args: |
           varRunDate=${{ env.varrundate }}
