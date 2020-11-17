@@ -24,8 +24,7 @@ jobs:
         
     - name: Variable | Git Commit Hash
       run: |
-        export githash="$(git log -1 --pretty=%h)"
-        echo "::set-env name=githash::$githash"
+        echo "githash=$(git log -1 --pretty=%h)" >> $GITHUB_ENV
         
     - name: Quay.io Login
       run: |
