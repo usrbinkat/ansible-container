@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Variable | Export Build Date
       run: |
-        echo "varrundate="$(date +%y%m%d%I%M%S)" >> $GITHUB_ENV
+        echo "varrundate=$(date +%y%m%d%I%M%S)" >> $GITHUB_ENV
         
     - name: Variable | Git Commit Hash
       run: |
