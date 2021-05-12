@@ -36,7 +36,7 @@ jobs:
         echo "varrundate=$(date +%y%m%d%I%M%S)" >> ${GITHUB_ENV};\
         echo;
     - name: Setup Docker Buildx
-      uses: docker/setup-buildx-action@v1
+      uses: docker/setup-buildx-action@v1.3.0
     - name: Git Checkout
       uses: actions/checkout@v2
     - name: Build Image 
